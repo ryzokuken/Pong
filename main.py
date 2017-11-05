@@ -19,7 +19,7 @@ score_player = 0
 score_computer = 0
 
 
-def player_score():
+def scorep():
     global score_player
     global pscore
 
@@ -27,7 +27,7 @@ def player_score():
     pscore.update_text(score_player)
 
 
-def computer_score():
+def scorec():
     global score_computer
     global cscore
 
@@ -41,9 +41,7 @@ displays = pygame.sprite.Group()
 
 player = paddle.Paddle(colors.BLUE, 20, 20)
 computer = paddle.Paddle(colors.RED, 760, 480)
-ball = ball.Ball(colors.GREEN, 390, 290,
-                 speed_ball, player_score,
-                 computer_score)
+ball = ball.Ball(colors.GREEN, 390, 290, speed_ball, scorep, scorec)
 pscore = text.Text(default_font, '0', 200)
 cscore = text.Text(default_font, '0', 600)
 
