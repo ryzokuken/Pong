@@ -1,5 +1,6 @@
 import pygame
 import paddle
+import aipaddle
 import ball
 import text
 import colors
@@ -39,9 +40,9 @@ paddles = pygame.sprite.Group()
 balls = pygame.sprite.Group()
 displays = pygame.sprite.Group()
 
-player = paddle.Paddle(colors.BLUE, 20, 20)
-computer = paddle.Paddle(colors.RED, 760, 480)
 ball = ball.Ball(colors.GREEN, 390, 290, speed_ball, scorep, scorec)
+player = paddle.Paddle(colors.BLUE, 20, 20)
+computer = aipaddle.AIPaddle(colors.RED, 760, 480, ball, 10)
 pscore = text.Text(default_font, '0', 200)
 cscore = text.Text(default_font, '0', 600)
 
@@ -61,7 +62,8 @@ while not done:
         player.move(speed_player)
 
     balls.update()
-    computer.rect.y = ball.rect.y - 40
+    paddles.update()
+    # computer.rect.y = ball.rect.y - 40
     for p in pygame.sprite.spritecollide(ball, paddles, False):
         ball.speed_x = -ball.speed_x
         ball.increase_speed(1)
